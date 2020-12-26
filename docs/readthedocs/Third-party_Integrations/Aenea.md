@@ -5,7 +5,7 @@ Caster can be used with [Aenea](https://github.com/dictation-toolbox/aenea), a c
 Aenea-Caster compatibility includes:
 
 * Using Aenea's `Key`, `Text` and `Mouse` actions in place of Dragonfly's so that input occurs on the Aenea server instead.
-* Importing `aenea.ProxyAppContext` as Dragonfly's `AppContext` class so that some app grammars will use the server's context instead. 
+* Importing `aenea.ProxyAppContext` as Dragonfly's `AppContext` class so that some app grammars will use the server's context instead.
 * Supporting Caster's clipboard functionality, such as the `"stoosh"` and `"spark"` commands, by synchronising the Aenea server's clipboard with the client system's clipboard. This requires a server plugin.
 
 To use Aenea-Caster compatibility, do the following:

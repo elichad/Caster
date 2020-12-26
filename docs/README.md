@@ -1,14 +1,14 @@
 # Caster
 [![Caster Lint/Unit Tests](https://github.com/dictation-toolbox/Caster/actions/workflows/pythonpackage.yml/badge.svg)](https://github.com/dictation-toolbox/Caster/actions/workflows/pythonpackage.yml)![GitHub top language](https://img.shields.io/github/languages/top/dictation-toolbox/Caster)[![https://github.com/dictation-toolbox/Caster/blob/master/LICENSE](https://img.shields.io/badge/license-GNU-informational)](https://matrix.to/#/!KOGBGqVOBKJjKLgFUY:matrix.org?via=matrix.org)
 
-[Caster](https://github.com/dictation-toolbox/Caster) gives you the power to control your computer by voice. Take control of your applications, games, mouse and keyboard to augment your workflow for every day activities or as an accessibility tool to develop applications entirely by voice built upon the [Dragonfly](https://github.com/dictation-toolbox/dragonfly) framework.  
+[Caster](https://github.com/dictation-toolbox/Caster) gives you the power to control your computer by voice. Take control of your applications, games, mouse and keyboard to augment your workflow for every day activities or as an accessibility tool to develop applications entirely by voice built upon the [Dragonfly](https://github.com/dictation-toolbox/dragonfly) framework.
 
 - Videos by the Caster Community:
 
   - [Caster voice coding: Advent of Code 2018](https://youtu.be/oDsMGroASSw?t=3) - Programming with Go
   - [VimGolf and Project Euler](https://www.youtube.com/watch?v=T1bKAqDhH_E)
   - [Dictating maths into scientific notebook](https://www.youtube.com/watch?v=oq8EoPu0cGY&t=3s) and [Dictating math by voice using Caster](https://www.youtube.com/watch?v=z-iHvPmjcas)
-  
+
 - Read the [Frequently Asked Questions - FAQ](https://caster.readthedocs.io/en/latest/readthedocs/meta/Caster_FAQ/)
 
 - [Getting started with Caster - ReadTheDocs](https://caster.readthedocs.io/en/latest/readthedocs/Getting_Started/Getting_Started_Overview/)
@@ -17,7 +17,7 @@
 
 - Caster Command Reference Guides:
 
-  - [Caster](https://github.com/dictation-toolbox/Caster/blob/master/CasterQuickReference.pdf) - Universal navigation and editing -  These voice commands are active all the time and provide input commands for letters, numbers, and punctuation, as well as the ability to easily manipulate windows and text. 
+  - [Caster](https://github.com/dictation-toolbox/Caster/blob/master/CasterQuickReference.pdf) - Universal navigation and editing -  These voice commands are active all the time and provide input commands for letters, numbers, and punctuation, as well as the ability to easily manipulate windows and text.
     - `window right` moves the active window to the right-hand side of the screen.
     - `prekris` inserts a pair of brackets `()` and moves the cursor inside them.
     - `shackle` selects the current line
@@ -25,7 +25,7 @@
     - `find` will execute a `ctrl-f` keystroke, bringing up the find and replace prompt,
     - `open file` will execute a `ctrl-o` keystroke,
     - `edit next <n>` - `ctrl-d` n times, selecting the next n instances of the currently selected word.
-  - [Program Languages](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/CCR_languages_Quick_Reference/) - Language specific coding - These modules are activated and deactivated with the `enable/disable <language>` voice command. For example after saying `enable python`, the following commands become available for dictation: 
+  - [Program Languages](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/CCR_languages_Quick_Reference/) - Language specific coding - These modules are activated and deactivated with the `enable/disable <language>` voice command. For example after saying `enable python`, the following commands become available for dictation:
     - `for loop` which will insert `for i in range(0, ):`
     - `print to console` - `print()`
     - `open file` -  `open('filename', 'r') as f:`
@@ -65,11 +65,11 @@
   - Git Client:  Github Desktop
   - Chat: Microsoft Teams, Gitter
   - Applications: Foxit Reader, fman, Total Commander, Outlook, Excel, Unity3D
-  
+
 - Supported [Programming Languages](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/CCR_languages_Quick_Reference/) - Enhanced by Caster's [Continuous Command Recognition](https://caster.readthedocs.io/en/latest/readthedocs/Rule_Construction/Advanced_Caster_Rules/CCR/) - [Demo](https://www.youtube.com/watch?v=Obdegwr_LFc&index=5&list=PLV6JPhkq1x8LHu02YefhUU9rXiB2PK8tc)
 
   - Python, Java, Bash, C++, C#, Rust, Go, HTML, CSS, JavaScript, SQL, Dart, Latex , Matlab, R, Prolog, VHDL, and Haxe
-  
+
 - [Editing and Navigation](https://github.com/dictation-toolbox/Caster/blob/master/CasterQuickReference.pdf)
 
 - Five additional [mouse navigation modes](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/Mouse/): curse, sudoku, douglas, legion, and rainbow - [Demo](https://www.youtube.com/watch?v=UISjQBMmQ-I&feature=youtu.be)
@@ -80,7 +80,7 @@
 - Utilize Powerful Commands
 
   - "[Alias](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/Alias/)" Commands - on-the-fly commands created by highlighting stuff
-  - "[Record From History](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/Record_Macros/)" - turn previously spoken commands into a voice macro 
+  - "[Record From History](https://caster.readthedocs.io/en/latest/readthedocs/Caster_Commands/Record_Macros/)" - turn previously spoken commands into a voice macro
 
 - Third-party Integrations
 

@@ -6,10 +6,10 @@ Caster aims to replace most use of the keyboard with dedicated commands. The com
 
 ## Commands
 
-- Press a key: `press <key>`  
+- Press a key: `press <key>`
 - Press a key modified by control, alt, shift, or windows: `<modifier> <key>`
-- Hold a modifier key: `hold <key>`  
-- Release a modifier key: `release <key>`  
+- Hold a modifier key: `hold <key>`
+- Release a modifier key: `release <key>`
 
 ## Available modifiers
 
@@ -68,7 +68,7 @@ The keys and their respective command specs (spoken phrases) currently available
 - Dolly: $
 - modulo: %
 - ampersand: &
-- apostrophe | single quote | chicky: 
+- apostrophe | single quote | chicky:
 - left prekris: (
 - right prekris: )
 - starling: *

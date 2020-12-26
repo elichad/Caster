@@ -33,7 +33,7 @@ Say `Enable <hook name>` activate a hook.
 
    Say `Enable show On Error Hook`
 
-   When Caster encounters an error, the status window is brought to the forefront. This allows you to see the error message. 
+   When Caster encounters an error, the status window is brought to the forefront. This allows you to see the error message.
 
    - Currently this is only implemented when rules reload with an error.
 

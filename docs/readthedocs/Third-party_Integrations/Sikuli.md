@@ -4,7 +4,7 @@
 
 ## Versions
 
-At time of writing, Caster supports Sikulix v2.0.1 and up. 
+At time of writing, Caster supports Sikulix v2.0.1 and up.
 
 ## Setup
 
@@ -30,9 +30,8 @@ At time of writing, Caster supports Sikulix v2.0.1 and up.
     version = "2.0.1"
     enabled = true
 ```
-
 - Sikulix will start next time Dragon Restarts.
-- Make commands with filename/"exports" convention as per the video. 
+- Make commands with filename/"exports" convention as per the video.
 
 ## Script Creation Conventions
 

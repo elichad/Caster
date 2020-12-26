@@ -1,6 +1,6 @@
 # Intro Grammars and Rules
 
-This section is adapted from the Dragonfly documentation on rules and grammars ([Sources](https://dragonfly2.readthedocs.io/en/latest/object_model.html)). These terms are the building blocks for you to understand how to customize or build your own grammars and rules. Most of [Dragonfly Documentation](https://dragonfly2.readthedocs.io/en/latest/index.html) directly applies to Caster. Starting off the Dragonfly documentation is not needed to understand this documentation. The Caster documentation shows how to create your own rules and grammars by example. However there are differences which are mentioned throughout the documentation. 
+This section is adapted from the Dragonfly documentation on rules and grammars ([Sources](https://dragonfly2.readthedocs.io/en/latest/object_model.html)). These terms are the building blocks for you to understand how to customize or build your own grammars and rules. Most of [Dragonfly Documentation](https://dragonfly2.readthedocs.io/en/latest/index.html) directly applies to Caster. Starting off the Dragonfly documentation is not needed to understand this documentation. The Caster documentation shows how to create your own rules and grammars by example. However there are differences which are mentioned throughout the documentation.
 
 ## Rules
 
@@ -25,8 +25,8 @@ Rule construction documentation will walk youu through the following:
 
 - `Your First Rule` - Guides you just experimenting with your own Global rule without delving deep into details.
 
-- `Basic Rules` - Expands in detail of what you are introduced to durinng `Your First Rule` . 
-  
+- `Basic Rules` - Expands in detail of what you are introduced to durinng `Your First Rule` .
+
   **Note** It is highly recommended that you skip `Advanced Rules` to `Loading Rules` until you're comfortably going your own basic rules.
 
 - `Advanced Rules` - Goes in-depth with castor specific features such as CCR

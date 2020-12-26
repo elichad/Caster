@@ -5,7 +5,7 @@ Explanation of `settings.toml`. Caster settings can be edited in the following w
 - Edited through a GUI. Say `launch caster settings`. Once done, say `complete` to save the file
 
 - The settings file can be summoned manually by saying `bring me caster settings file` to your default editor for `.toml` files
-  
+
   The following is an `example.toml` settings file with comments explaining the various settings. Some of the settings fields have been truncated for brevity as noted in the comments.
 
 ```toml
@@ -17,7 +17,7 @@ default_engine_mode = false #  Changes default mode when caster starts
 engine_mode = "normal" # Currently implementfor DNS Only/DPI.
 # Valid mic_mode options
 # 'normal': dictation and command (Default: Only/DPI only)
-# 'dictation': Dictation only 
+# 'dictation': Dictation only
 # 'command': Commands only (Default: Other engines)
 # 'numbers': Numbers only
 # 'spell': Spelling only
@@ -38,7 +38,7 @@ mic_sleep_timer = 300 # A timer puts microphone to after X seconds after last su
 
 [formats."C plus plus"] # Language
 # The first number is capitalization and the second is spacing.
-secondary_format = [2, 1] 
+secondary_format = [2, 1]
 text_format = [3, 1]
 
 [formats."C sharp"]
@@ -61,7 +61,7 @@ text_format = [3, 1]
 #    5 incline - words/with/slashes
 
 [hooks]
-default_hooks = ["PrinterHook"] # Default hooks. Do not edit. 
+default_hooks = ["PrinterHook"] # Default hooks. Do not edit.
 
 [miscellaneous]
 atom_palette_wait = 30 # Milliseconds to pause for atom palette functions
@@ -77,8 +77,8 @@ status_window_foreground_on_error = false # If Caster logs an error, the status 
 use_aenea = false # Enables aenea third-party integration
 
 [online]
-last_update_date = "2020-01-18" # Last time Caster looked for an Dragonfly update 
-online_mode = true #  Disables all Caster features that utilize an internet connection 
+last_update_date = "2020-01-18" # Last time Caster looked for an Dragonfly update
+online_mode = true #  Disables all Caster features that utilize an internet connection
 update_interval = 7 #  Interval days between checking for updates
 
 [paths] # Default generated paths: "." placeholder for empty path.
@@ -91,15 +91,15 @@ SIKULI_RUNNER = "."
 TERMINAL_PATH = "C:\\Program Files\\Git\\git-bash.exe" # Customized to your preferred git bash
 
 # Auto generated
-BASE_PATH = "D:\\Backup\\Library\\Documents\\Caster\\castervoice" # Caster source code 
-USER_DIR = "C:\\Users\\Main\\AppData\\Local\\caster" # Caster user directory 
+BASE_PATH = "D:\\Backup\\Library\\Documents\\Caster\\castervoice" # Caster source code
+USER_DIR = "C:\\Users\\Main\\AppData\\Local\\caster" # Caster user directory
 
 [python] # Unused: future feature.
 automatic_settings = true
 pip = "pip"
 version = "python"
 
-[sikuli] 
-enabled = false # Toggle sikuli third-party integration 
+[sikuli]
+enabled = false # Toggle sikuli third-party integration
 version = "" # Sikuli Version
 ```

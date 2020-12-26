@@ -10,7 +10,7 @@ Out-of-the-box, Caster gives the user new mouse navigation commands, text format
 
 ## Modifying the Rules
 
-If you want to modify Caster's starter rules, there are a few ways to go about it. Of course, you could just edit the source, but then you'd have to deal with merge conflicts when updating to newer versions of Caster. 
+If you want to modify Caster's starter rules, there are a few ways to go about it. Of course, you could just edit the source, but then you'd have to deal with merge conflicts when updating to newer versions of Caster.
 
 If you want to personalize existing command sets, you can use rule transformers. Rule transformers let you instruct Caster as to how it should modify command sets either at boot or at runtime when command sets change (for example, when you say `enable Python`).
 
@@ -51,7 +51,7 @@ There are two ways to get around this:
 
 ### Override Caster starter rules using the User Directory
 
-   This allows you to copy starter rules and have them override the original ones in the core Caster code by placing them in the user directory. This allows you to make any edits such as adding, renaming, deleting specs and actions. Any rule copied into the user directory is not updated with Caster. It becomes the end-users responsibility to manage how and when the rules update manually. 
+   This allows you to copy starter rules and have them override the original ones in the core Caster code by placing them in the user directory. This allows you to make any edits such as adding, renaming, deleting specs and actions. Any rule copied into the user directory is not updated with Caster. It becomes the end-users responsibility to manage how and when the rules update manually.
 
    To begin copy the rule file or folder of interest from `castervoice\rules` in the source code to the [user directory](https://caster.readthedocs.io/en/latest/readthedocs/User_Dir/Caster_User_Dir/) rules folder. There are some important things to keep in mind:
 

@@ -2,9 +2,10 @@ import sys, os
 from threading import Timer
 
 import six
+
 if six.PY2:
-    from Tkinter import Label, Entry, Checkbutton # pylint: disable=import-error
-    import Tkinter as tk # pylint: disable=import-error
+    from Tkinter import Label, Entry, Checkbutton  # pylint: disable=import-error
+    import Tkinter as tk  # pylint: disable=import-error
 else:
     from tkinter import Label, Entry, Checkbutton
     import tkinter as tk
@@ -29,28 +30,32 @@ class HomunculusRecording(Homunculus):
         Homunculus.__init__(self, params[0])
         self.title(settings.HOMUNCULUS_VERSION + settings.HMC_TITLE_RECORDING)
 
-        self.geometry("640x480+" + str(int(self.winfo_screenwidth()/2 - 320)) + "+" +
-                      str(int(self.winfo_screenheight()/2 - 240)))
+        self.geometry(
+            "640x480+"
+            + str(int(self.winfo_screenwidth() / 2 - 320))
+            + "+"
+            + str(int(self.winfo_screenheight() / 2 - 240))
+        )
         self.instructions = "Macro Recording Options"
-        Label(
-            self, text=self.instructions, name="pathlabel").grid(
-                row=self.get_row(), column=1, sticky=tk.E)
+        Label(self, text=self.instructions, name="pathlabel").grid(
+            row=self.get_row(), column=1, sticky=tk.E
+        )
 
         wf_row = self.get_row()
-        Label(
-            self, text="Command Words:", name="wordlabel").grid(
-                row=wf_row, column=0, sticky=tk.W)
+        Label(self, text="Command Words:", name="wordlabel").grid(
+            row=wf_row, column=0, sticky=tk.W
+        )
         self.word_box = Entry(self, name="word_box")
         self.word_box.grid(row=wf_row, column=1, sticky=tk.W)
 
         self.repeatable = tk.IntVar()
-        Checkbutton(
-            self, text="Make Repeatable", variable=self.repeatable).grid(
-                row=self.get_row(), column=0, sticky=tk.W)
+        Checkbutton(self, text="Make Repeatable", variable=self.repeatable).grid(
+            row=self.get_row(), column=0, sticky=tk.W
+        )
 
-        Label(
-            self, text="Dictation History", name="optionslabel").grid(
-                row=self.get_row(), column=1, sticky=tk.E)
+        Label(self, text="Dictation History", name="optionslabel").grid(
+            row=self.get_row(), column=1, sticky=tk.E
+        )
         self.word_state = []
         cb_number = 1
 
@@ -78,13 +83,13 @@ class HomunculusRecording(Homunculus):
                 col2_inc += 1
 
             Checkbutton(
-                self, text="(" + str(cb_number) + ")", variable=word_state_var).grid(
-                    row=cb_row, column=cb_col + 1, sticky=tk.W)
+                self, text="(" + str(cb_number) + ")", variable=word_state_var
+            ).grid(row=cb_row, column=cb_col + 1, sticky=tk.W)
             self.word_state.append((word_state_var, cb_number))
             cb_number += 1
-            Label(
-                self, text=display_sentence, name="cb_label" + str(cb_number)).grid(
-                    row=cb_row, column=cb_col, sticky=tk.W)
+            Label(self, text=display_sentence, name="cb_label" + str(cb_number)).grid(
+                row=cb_row, column=cb_col, sticky=tk.W
+            )
 
         self.cb_max = cb_number
 
@@ -112,8 +117,9 @@ class HomunculusRecording(Homunculus):
     def check_boxes(self, details):
         for box_index in details:
             if box_index >= 1 and box_index <= self.cb_max:
-                self.word_state[box_index - 1][0].set(self.word_state[box_index
-                                                                      - 1][0].get() == 0)
+                self.word_state[box_index - 1][0].set(
+                    self.word_state[box_index - 1][0].get() == 0
+                )
 
     def check_range_of_boxes(self, details):
         box_index_from = details[0] - 1
@@ -123,7 +129,7 @@ class HomunculusRecording(Homunculus):
                 self.word_state[i][0].set(i >= box_index_from and i <= box_index_to)
 
     def xmlrpc_do_action(self, action, details=None):
-        '''acceptable keys are numbers and w and p'''
+        """acceptable keys are numbers and w and p"""
         if action == "check":
             self.check_boxes(details)
         elif action == "focus":

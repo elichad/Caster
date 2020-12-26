@@ -1,6 +1,7 @@
 import six
+
 if six.PY2:
-    from Tkinter import Label # pylint: disable=import-error
+    from Tkinter import Label  # pylint: disable=import-error
 else:
     from tkinter import Label
 import os
@@ -21,13 +22,18 @@ class HomunculusConfirm(Homunculus):
         Homunculus.__init__(self, params[0])
         self.title(settings.HOMUNCULUS_VERSION + settings.HMC_TITLE_CONFIRM)
 
-        self.geometry("320x50+" + str(int(self.winfo_screenwidth()/2 - 160)) + "+" +
-                      str(int(self.winfo_screenheight()/2 - 25)))
+        self.geometry(
+            "320x50+"
+            + str(int(self.winfo_screenwidth() / 2 - 160))
+            + "+"
+            + str(int(self.winfo_screenheight() / 2 - 25))
+        )
         Label(
             self,
             text="Please confirm: " + " ".join(params[1].split(settings.HMC_SEPARATOR)),
-            name="i").pack()
-        Label(self, text="(say \"confirm\" or \"disconfirm\")", name="i2").pack()
+            name="i",
+        ).pack()
+        Label(self, text='(say "confirm" or "disconfirm")', name="i2").pack()
 
     def xmlrpc_get_message(self):
         if self.completed:
@@ -42,5 +48,5 @@ class HomunculusConfirm(Homunculus):
     def xmlrpc_do_action(self, action, details=None):
         if isinstance(action, bool):
             self.completed = True
-            '''1 is True, 2 is False'''
+            """1 is True, 2 is False"""
             self.value = 1 if action else 2

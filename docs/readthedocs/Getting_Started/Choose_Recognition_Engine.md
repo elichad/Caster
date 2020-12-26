@@ -24,7 +24,7 @@ Disadvantages
 - Cannot use custom speech recognition models
 - Zero low level access to the engine implementation
 
-**Dragon NaturallySpeaking Home** **(DNS)** can be used by Caster however comes with significant limitations besides what's mentioned in their [matrix comparison](https://www.dragonsupportservice.us/dragon-15-home-vs-professional-specifications/) and therefore not recommended. The retail upgrade cost DPI is about the same as the Dragon NaturallySpeaking Home. 
+**Dragon NaturallySpeaking Home** **(DNS)** can be used by Caster however comes with significant limitations besides what's mentioned in their [matrix comparison](https://www.dragonsupportservice.us/dragon-15-home-vs-professional-specifications/) and therefore not recommended. The retail upgrade cost DPI is about the same as the Dragon NaturallySpeaking Home.
 
 Limitations of the Home Edition include but not limited to:
 
@@ -38,7 +38,7 @@ Limitations of the Home Edition include but not limited to:
 
 ## Kaldi
 
-Daanzu's [Kaldi](https://dragonfly2.readthedocs.io/en/latest/kaldi_engine.html) open source engine cross-platform speech recognition based on [Kaldi Project](https://kaldi-asr.org/).  
+Daanzu's [Kaldi](https://dragonfly2.readthedocs.io/en/latest/kaldi_engine.html) open source engine cross-platform speech recognition based on [Kaldi Project](https://kaldi-asr.org/).
 
 - Free and open source engine that respects user privacy.
 

@@ -1,10 +1,10 @@
 # Creating Hooks and Events
 
-Hooks are a new concept to Caster 1.x.x. The basic idea is that Caster itself defines "events." Event objects contain immutable information about the stuff going on in the "guts" of Caster. Those objects are fed to "hooks", user-defined listeners, which can do whatever they want with that event data.  
+Hooks are a new concept to Caster 1.x.x. The basic idea is that Caster itself defines "events." Event objects contain immutable information about the stuff going on in the "guts" of Caster. Those objects are fed to "hooks", user-defined listeners, which can do whatever they want with that event data.
 
-Hooks and Events make use of dependency injection and class inheritance through base classes. This design pattern coupled with loosely coupled code leads to less bugs and more productivity, and so the use of hooks rather than "guts" modifications is encouraged whenever possible. This should allow a decent amount of customization to happen without needing to make changes in the "guts" (Nexus, GrammarManager, CCRMerger, etc. of Caster. 
+Hooks and Events make use of dependency injection and class inheritance through base classes. This design pattern coupled with loosely coupled code leads to less bugs and more productivity, and so the use of hooks rather than "guts" modifications is encouraged whenever possible. This should allow a decent amount of customization to happen without needing to make changes in the "guts" (Nexus, GrammarManager, CCRMerger, etc. of Caster.
 
-All new hooks are set to `false` by default unless they' are defined as defaults in `settings.py`  under `default_hooks`. 
+All new hooks are set to `false` by default unless they' are defined as defaults in `settings.py`  under `default_hooks`.
 
 1. **Hook Runner Placement**
 
@@ -22,12 +22,12 @@ All new hooks are set to `false` by default unless they' are defined as defaults
 
 2. **Create a Event**
 
-   Create a Event and register [Event types](https://github.com/dictation-toolbox/Caster/blob/master/castervoice/lib/merge/ccrmerging2/hooks/events/event_types.py). 
+   Create a Event and register [Event types](https://github.com/dictation-toolbox/Caster/blob/master/castervoice/lib/merge/ccrmerging2/hooks/events/event_types.py).
 
 - Events can be reused in hooks.
 - Don't forget to import the event at the location of your hook runner.
 
-The Event needs a class name `RuleActivationEvent`,  registered event type `EventType.ACTIVATION` , and the variables (`class_name, enabled`). 
+The Event needs a class name `RuleActivationEvent`,  registered event type `EventType.ACTIVATION` , and the variables (`class_name, enabled`).
 
 ``` Python
 from castervoice.lib.merge.ccrmerging2.hooks.events.base_event import BaseHookEvent
@@ -37,13 +37,13 @@ class RuleActivationEvent(BaseHookEvent):
     def __init__(self, rule_class_name, active):
         super(RuleActivationEvent, self).__init__(EventType.ACTIVATION)
         # Data from the hook runner
-        self.rule_class_name = rule_class_name 
-        self.active = active 
+        self.rule_class_name = rule_class_name
+        self.active = active
 ```
 
 3.**Create a Hook**
 
-   Hooks need class name `PrinterHook`, Event type `EventType.ACTIVATION` and a pronunciation`"printer"` 
+   Hooks need class name `PrinterHook`, Event type `EventType.ACTIVATION` and a pronunciation`"printer"`
 
 - Hook can be enabled/disabled while Caster is running. The get_pronunciation Is returned as `printer` but the full pronunciation `enable/disable printer hook`.  The prefix/suffix is added automatically.
 
@@ -67,20 +67,19 @@ class PrinterHook(BaseHook):
 
     def get_pronunciation(self):
         # Hook can be enabled/disabled while Caster is running
-        return "printer" # enable/disable printer hook    
-    
+        return "printer" # enable/disable printer hook
+
     # The `run` function Is executed by hook runner event occurs with new data.
     def run(self, event): # Notice both variables from the event data are stored in `event`
         state = "active" if event.active else "inactive" # Monitoring state
         # Printing To console rule class name and state
         printer.out("The rule {} was set to {}.".format(event.rule_class_name, state))
-
     def run_on_enable(self, event):
         # Logic for function to run when enabling a hook
-        
+
     def run_on_disable(self, event):
        # Logic for function to run on when disabling a hook
-        
+
 def get_hook():
     return PrinterHook
 ```

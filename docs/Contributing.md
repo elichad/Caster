@@ -21,7 +21,7 @@ If you'd like to add rules for new languages or popular libraries for languages 
 
 It is recommended that you review one of the many online tutorials (for example, [this one](http://yangsu.github.io/pull-request-tutorial/)) to familiarize yourself with the standard GitHub workflow.
 
-This guide assumes that you would [make your own fork](https://help.github.com/articles/fork-a-repo/) of the Caster repository. You can clone your copy locally and setup a remote pointing to the upstream (dictation-toolbox) repository. Once your fork is created, these are some basic commands to get you started: 
+This guide assumes that you would [make your own fork](https://help.github.com/articles/fork-a-repo/) of the Caster repository. You can clone your copy locally and setup a remote pointing to the upstream (dictation-toolbox) repository. Once your fork is created, these are some basic commands to get you started:
 
     cd C:\MyProjects
     git clone https://github.com/{YOUR-USER-NAME}/caster/
@@ -56,4 +56,4 @@ Where **`<pr-feature-name>`** is the name you want to give to your new feature b
 
 ### Open a pull request
 
-When you navigate to your fork on GitHub, you will be asked if you want to open a pull request for the branch you just pushed. Click the button to open a new pull request and make sure you select the `master` branch on the base (dictation-toolbox) fork. Then fill out the PR template that will appear. 
+When you navigate to your fork on GitHub, you will be asked if you want to open a pull request for the branch you just pushed. Click the button to open a new pull request and make sure you select the `master` branch on the base (dictation-toolbox) fork. Then fill out the PR template that will appear.

@@ -1,7 +1,8 @@
 import six
+
 if six.PY2:
-    from Tkinter import Label, Entry, StringVar # pylint: disable=import-error
-    import tkFileDialog # pylint: disable=import-error
+    from Tkinter import Label, Entry, StringVar  # pylint: disable=import-error
+    import tkFileDialog  # pylint: disable=import-error
 else:
     from tkinter import Label, Entry, StringVar, filedialog as tkFileDialog
 import os
@@ -22,11 +23,17 @@ class HomunculusDirectory(Homunculus):
         Homunculus.__init__(self, params[0])
         self.title(settings.HOMUNCULUS_VERSION + settings.HMC_TITLE_DIRECTORY)
 
-        self.geometry("640x50+" + str(int(self.winfo_screenwidth()/2 - 320)) + "+" +
-                      str(int(self.winfo_screenheight()/2 - 25)))
+        self.geometry(
+            "640x50+"
+            + str(int(self.winfo_screenwidth() / 2 - 320))
+            + "+"
+            + str(int(self.winfo_screenheight() / 2 - 25))
+        )
         Label(self, text="Enter directory or say 'browse'", name="pathlabel").pack()
         self.content = StringVar()
-        self.word_box = Entry(self, name="word_box", width=640, textvariable=self.content)
+        self.word_box = Entry(
+            self, name="word_box", width=640, textvariable=self.content
+        )
         self.word_box.pack()
 
     def xmlrpc_get_message(self):
@@ -42,10 +49,10 @@ class HomunculusDirectory(Homunculus):
 
     def _ask_directory(self):
         dir_opt = {}
-        dir_opt['initialdir'] = os.path.expanduser('~')  #os.environ["HOME"]
-        dir_opt['mustexist'] = False
-        dir_opt['parent'] = self
-        dir_opt['title'] = 'Please select directory'
+        dir_opt["initialdir"] = os.path.expanduser("~")  # os.environ["HOME"]
+        dir_opt["mustexist"] = False
+        dir_opt["parent"] = self
+        dir_opt["title"] = "Please select directory"
         result = tkFileDialog.askdirectory(**dir_opt)
         self.content.set(result)
 

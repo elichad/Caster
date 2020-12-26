@@ -1,7 +1,8 @@
 from dragonfly import ActionBase, Paste
 from castervoice.lib import context
 from castervoice.lib.actions import Text, Key
-'''
+
+"""
 Stores the currently highlighted text in a temporary variable,
 to be Retrieved after some other action. If no text was
 highlighted, an empty string will be stored.
@@ -33,7 +34,7 @@ NOTE:
 If the highlighted text is the same as what is currently on the
 clipboard, an empty string will be stored. This is a necessary
 side-effect of being able to detect when no text is highlighted.
-'''
+"""
 _TEMP = ""
 
 

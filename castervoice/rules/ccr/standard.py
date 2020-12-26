@@ -1,8 +1,8 @@
-'''
+"""
 Created on Oct 17, 2015
 
 @author: synkarius
-'''
+"""
 
 
 class SymbolSpecs(object):
@@ -27,7 +27,7 @@ class SymbolSpecs(object):
     OR = "lodge or"
     NOT = "lodge not"
 
-    SYSOUT = "print to console"
+    SYSOUT = "(print to | printer | console)"
 
     IMPORT = "import"
 

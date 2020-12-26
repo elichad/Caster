@@ -8,9 +8,10 @@ import sys
 import threading as th
 import time
 from dragonfly import monitors
+
 if six.PY2:
     from SimpleXMLRPCServer import SimpleXMLRPCServer  # pylint: disable=import-error
-    import Tkinter as tk # pylint: disable=import-error
+    import Tkinter as tk  # pylint: disable=import-error
 else:
     from xmlrpc.server import SimpleXMLRPCServer  # pylint: disable=no-name-in-module
     import tkinter as tk
@@ -23,6 +24,7 @@ finally:
     from castervoice.lib.actions import Mouse
     from castervoice.lib.contexts import is_linux
     from castervoice.lib.merge.communication import Communicator
+
     settings.initialize()
 
 if is_linux():
@@ -55,8 +57,12 @@ class TkTransparent(tk.Tk):
         return Dimensions(self.winfo_screenwidth(), self.winfo_screenheight(), 0, 0)
 
     def get_dimensions_string(self):
-        return "%dx%d+%d+%d" % (self.dimensions.width, self.dimensions.height,
-                                self.dimensions.x, self.dimensions.y)
+        return "%dx%d+%d+%d" % (
+            self.dimensions.width,
+            self.dimensions.height,
+            self.dimensions.x,
+            self.dimensions.y,
+        )
 
     def __init__(self, name, dimensions=None, canvas=True):
         tk.Tk.__init__(self, baseName="")
@@ -77,8 +83,9 @@ class TkTransparent(tk.Tk):
                 master=self,
                 width=dimensions.width,
                 height=dimensions.height,
-                bg='white',
-                bd=-2)
+                bg="white",
+                bd=-2,
+            )
             self._canvas.pack()
         self.protocol("WM_DELETE_WINDOW", self.xmlrpc_kill)
 
@@ -93,16 +100,18 @@ class TkTransparent(tk.Tk):
         comm = Communicator()
         self.server = SimpleXMLRPCServer(
             (Communicator.LOCALHOST, comm.com_registry["grids"]),
-            logRequests=False, allow_none=True)
+            logRequests=False,
+            allow_none=True,
+        )
         self.server.register_function(self.xmlrpc_kill, "kill")
 
     def pre_redraw(self):
-        '''gets the window ready to be redrawn'''
+        """gets the window ready to be redrawn"""
         self.deiconify()
         self._canvas.delete("all")
 
     def unhide(self):
-        ''''''
+        """"""
         self.deiconify()
         self.lift()
 
@@ -124,7 +133,7 @@ class TkTransparent(tk.Tk):
 
 class RainbowGrid(TkTransparent):
     def __init__(self, grid_size=None, square_size=None, square_alpha=None):
-        '''square_size is an integer'''
+        """square_size is an integer"""
         TkTransparent.__init__(self, settings.RAINBOW_TITLE, grid_size)
         self.attributes("-alpha", 0.5)
         self.square_size = square_size if square_size else 37
@@ -135,7 +144,7 @@ class RainbowGrid(TkTransparent):
             (255, 255, 0, self.square_alpha),  # yellow
             (0, 128, 0, self.square_alpha),  # green
             (0, 0, 125, self.square_alpha),  # blue
-            (128, 0, 128, self.square_alpha)  # purple
+            (128, 0, 128, self.square_alpha),  # purple
         ]
         self.position_index = None
 
@@ -156,7 +165,8 @@ class RainbowGrid(TkTransparent):
     def finalize(self):
         self.imgtk = ImageTk.PhotoImage(self.img)
         self._canvas.create_image(
-            self.dimensions.width/2, self.dimensions.height/2, image=self.imgtk)
+            self.dimensions.width / 2, self.dimensions.height / 2, image=self.imgtk
+        )
 
     def setup_xmlrpc_server(self):
         TkTransparent.setup_xmlrpc_server(self)
@@ -165,28 +175,32 @@ class RainbowGrid(TkTransparent):
     def xmlrpc_move_mouse(self, pre, color, num):
         if pre > 0:
             pre -= 1
-        selected_index = self.position_index[color + pre*len(self.colors)][num]
-        self.move_mouse(selected_index[0] + self.dimensions.x,
-                        selected_index[1] + self.dimensions.y)
+        selected_index = self.position_index[color + pre * len(self.colors)][num]
+        self.move_mouse(
+            selected_index[0] + self.dimensions.x, selected_index[1] + self.dimensions.y
+        )
 
     def fill_xs_ys(self):
         # only figure out the coordinates of the lines once
         if not self.xs_ys_filled():
-            for x in range(0, int(self.dimensions.width/self.square_size) + 2):
-                self.xs.append(x*self.square_size)
-            for y in range(0, int(self.dimensions.height/self.square_size) + 2):
-                self.ys.append(y*self.square_size)
+            for x in range(0, int(self.dimensions.width / self.square_size) + 2):
+                self.xs.append(x * self.square_size)
+            for y in range(0, int(self.dimensions.height / self.square_size) + 2):
+                self.ys.append(y * self.square_size)
         self.position_index = []
         # add first "color":
         self.position_index.append([])
 
     def draw(self):
         self.pre_redraw()
-        self.img = ImageGrab.grab([
-            self.dimensions.x, self.dimensions.y,
-            self.dimensions.x + self.dimensions.width,
-            self.dimensions.y + self.dimensions.height
-        ])  # .filter(ImageFilter.BLUR)
+        self.img = ImageGrab.grab(
+            [
+                self.dimensions.x,
+                self.dimensions.y,
+                self.dimensions.x + self.dimensions.width,
+                self.dimensions.y + self.dimensions.height,
+            ]
+        )  # .filter(ImageFilter.BLUR)
         self.draw_squares()
         self.finalize()
         self.unhide()
@@ -195,14 +209,14 @@ class RainbowGrid(TkTransparent):
         self.fill_xs_ys()
         #
 
-        text_background_buffer = int(self.square_size/6)
+        text_background_buffer = int(self.square_size / 6)
         xs_size = len(self.xs)
         ys_size = len(self.ys)
         box_number = 0
         colors_index = 0
         if is_linux():
             font = ImageFont.truetype("FreeMono.ttf", 15)
-        else: 
+        else:
             font = ImageFont.truetype("arialbd.ttf", 15)
         draw = ImageDraw.Draw(self.img, 'RGBA')
 
@@ -210,17 +224,18 @@ class RainbowGrid(TkTransparent):
             for lx in range(0, xs_size - 1):
                 txt = str(box_number)
                 tw, th = draw.textsize(txt, font)
-                text_x = int((self.xs[lx] + self.xs[lx + 1] - tw)/2) + 1
-                text_y = int((self.ys[ly] + self.ys[ly + 1] - th)/2) - 1
+                text_x = int((self.xs[lx] + self.xs[lx + 1] - tw) / 2) + 1
+                text_y = int((self.ys[ly] + self.ys[ly + 1] - th) / 2) - 1
                 draw.rectangle(
                     [
                         self.xs[lx] + text_background_buffer,
                         self.ys[ly] + text_background_buffer,
                         self.xs[lx + 1] - text_background_buffer,
-                        self.ys[ly + 1] - text_background_buffer
+                        self.ys[ly + 1] - text_background_buffer,
                     ],
                     fill=self.colors[colors_index],
-                    outline=False)
+                    outline=False,
+                )
 
                 draw.text((text_x + 1, text_y + 1), txt, (0, 0, 0), font=font)
                 draw.text((text_x - 1, text_y + 1), txt, (0, 0, 0), font=font)
@@ -229,8 +244,11 @@ class RainbowGrid(TkTransparent):
                 draw.text((text_x, text_y), txt, (255, 255, 255), font=font)
                 # index the position
                 self.position_index[len(self.position_index) - 1].append(
-                    (int((self.xs[lx] + self.xs[lx + 1])/2),
-                     int((self.ys[ly] + self.ys[ly + 1])/2)))
+                    (
+                        int((self.xs[lx] + self.xs[lx + 1]) / 2),
+                        int((self.ys[ly] + self.ys[ly + 1]) / 2),
+                    )
+                )
 
                 # update for next iteration
                 box_number += 1
@@ -258,8 +276,9 @@ class DouglasGrid(TkTransparent):
 
     def xmlrpc_move_mouse(self, x, y):
         DouglasGrid.move_mouse(
-            x*self.square_size + int(self.square_size/2) + self.dimensions.x,
-            y*self.square_size + int(self.square_size/2) + self.dimensions.y)
+            x * self.square_size + int(self.square_size / 2) + self.dimensions.x,
+            y * self.square_size + int(self.square_size / 2) + self.dimensions.y,
+        )
 
     def draw(self):
         self.pre_redraw()
@@ -269,49 +288,54 @@ class DouglasGrid(TkTransparent):
     def fill_xs_ys(self):
         # only figure out the coordinates of the lines once
         if not self.xs_ys_filled():
-            for x in range(0, int(self.dimensions.width/self.square_size) + 2):
-                self.xs.append(x*self.square_size)
-            for y in range(0, int(self.dimensions.height/self.square_size)):
-                self.ys.append(y*self.square_size)
+            for x in range(0, int(self.dimensions.width / self.square_size) + 2):
+                self.xs.append(x * self.square_size)
+            for y in range(0, int(self.dimensions.height / self.square_size)):
+                self.ys.append(y * self.square_size)
 
     def draw_lines_and_numbers(self):
 
         self.fill_xs_ys()
 
-        text_background_buffer = int(self.square_size/10)
+        text_background_buffer = int(self.square_size / 10)
         xs_size = len(self.xs)
         for lx in range(0, xs_size):
             fill = "black"
             if lx % 3:
                 fill = "gray"
             self._canvas.create_line(
-                self.xs[lx], 0, self.xs[lx], self.dimensions.height, fill=fill)
+                self.xs[lx], 0, self.xs[lx], self.dimensions.height, fill=fill
+            )
             if lx + 1 < xs_size:
                 self._canvas.create_rectangle(
                     self.xs[lx] + text_background_buffer,
                     0 + text_background_buffer,
                     self.xs[lx + 1] - text_background_buffer,
                     self.square_size - text_background_buffer,
-                    fill='Black')
+                    fill="Black",
+                )
                 self._canvas.create_rectangle(
                     self.xs[lx] + text_background_buffer,
                     self.dimensions.height - self.square_size + text_background_buffer,
                     self.xs[lx + 1] - text_background_buffer,
                     self.dimensions.height - text_background_buffer,
-                    fill='Black')
-                text_x = int((self.xs[lx] + self.xs[lx + 1])/2)
+                    fill="Black",
+                )
+                text_x = int((self.xs[lx] + self.xs[lx + 1]) / 2)
                 self._canvas.create_text(
                     text_x,
-                    int(self.square_size/2),
+                    int(self.square_size / 2),
                     text=str(lx),
                     font="Arial 10 bold",
-                    fill='White')
+                    fill="White",
+                )
                 self._canvas.create_text(
                     text_x,
-                    self.dimensions.height - int(self.square_size/2),
+                    self.dimensions.height - int(self.square_size / 2),
                     text=str(lx),
                     font="Arial 10 bold",
-                    fill='White')
+                    fill="White",
+                )
 
         ys_size = len(self.ys)
         for ly in range(0, ys_size):
@@ -319,40 +343,47 @@ class DouglasGrid(TkTransparent):
             if ly % 3:
                 fill = "gray"
             self._canvas.create_line(
-                0, self.ys[ly], self.dimensions.width, self.ys[ly], fill=fill)
+                0, self.ys[ly], self.dimensions.width, self.ys[ly], fill=fill
+            )
             if ly + 1 < ys_size and ly != 0:
                 self._canvas.create_rectangle(
                     0 + text_background_buffer,
                     self.ys[ly] + text_background_buffer,
                     self.square_size - text_background_buffer,
                     self.ys[ly + 1] - text_background_buffer,
-                    fill='Black')
+                    fill="Black",
+                )
                 self._canvas.create_rectangle(
                     self.dimensions.width - self.square_size + text_background_buffer,
                     self.ys[ly] + text_background_buffer,
                     self.dimensions.width - text_background_buffer,
                     self.ys[ly + 1] - text_background_buffer,
-                    fill='Black')
-                text_y = int((self.ys[ly] + self.ys[ly + 1])/2)
+                    fill="Black",
+                )
+                text_y = int((self.ys[ly] + self.ys[ly + 1]) / 2)
                 self._canvas.create_text(
-                    int(self.square_size/2),
+                    int(self.square_size / 2),
                     text_y,
                     text=str(ly),
                     font="Arial 10 bold",
-                    fill='White')
+                    fill="White",
+                )
                 self._canvas.create_text(
-                    self.dimensions.width - int(self.square_size/2),
+                    self.dimensions.width - int(self.square_size / 2),
                     text_y,
                     text=str(ly),
                     font="Arial 10 bold",
-                    fill='White')
+                    fill="White",
+                )
 
 
-'''
+"""
 Divide screen into grid of 3 x 3 squares and assign each one a number.
     The user can specify a square number and further refine the selection
     with one of the numbers from 1 to 9.
-'''
+"""
+
+
 class SudokuGrid(TkTransparent):
     def __init__(self, grid_size=None, square_size=32):
         TkTransparent.__init__(self, settings.SUDOKU_TITLE, grid_size)
@@ -361,11 +392,11 @@ class SudokuGrid(TkTransparent):
         screen_h = self.dimensions.height
 
         self.square_width = square_size
-        while (screen_w % self.square_width != 0):
+        while screen_w % self.square_width != 0:
             self.square_width -= 1
 
         self.square_height = square_size
-        while (screen_h % self.square_height != 0):
+        while screen_h % self.square_height != 0:
             self.square_height -= 1
 
         self.width = int(screen_w / self.square_width)
@@ -484,8 +515,7 @@ class SudokuGrid(TkTransparent):
     # sq - square number
     def square_to_pos(self, sq):
         x, y = self.square_to_xy(sq)
-        return (int((x + 0.5) * self.square_width),
-                int((y + 0.5) * self.square_height))
+        return (int((x + 0.5) * self.square_width), int((y + 0.5) * self.square_height))
 
     # Convert square number to screen number
     # sq - square number
@@ -521,24 +551,29 @@ class SudokuGrid(TkTransparent):
             # draw vertical grid lines
             if x > 0 and sq <= self.width:
                 canvas.create_line(
-                    screen_x, 0, screen_x, self.dimensions.height, fill=fill)
+                    screen_x, 0, screen_x, self.dimensions.height, fill=fill
+                )
 
             # draw horizontal grid lines
             if x == 0:
                 canvas.create_line(
-                    0, screen_y, self.dimensions.width, screen_y, fill=fill)
+                    0, screen_y, self.dimensions.width, screen_y, fill=fill
+                )
 
             # draw number
-            if (x % 3 == 1 or x == self.width - 1) and (y % 3 == 1 or y == self.height - 1):
+            if (x % 3 == 1 or x == self.width - 1) and (
+                y % 3 == 1 or y == self.height - 1
+            ):
                 n = self.square_to_num(sq)
                 pos = self.num_to_pos(n)
-                canvas.create_text(pos[0], pos[1], text=str(n),
-                                   font="TkFixedFont 14", fill='Black')
+                canvas.create_text(
+                    pos[0], pos[1], text=str(n), font="TkFixedFont 14", fill="Black"
+                )
 
 
 # Main function
 def main(argv):
-    help_message = 'Usage: grids.py -g <GRID_TYPE> [-m <MONITOR>]\n where <GRID_TYPE> is one of:\n  r\trainbow grid\n  d\tdouglas grid\n  s\tsudoku grid'
+    help_message = "Usage: grids.py -g <GRID_TYPE> [-m <MONITOR>]\n where <GRID_TYPE> is one of:\n  r\trainbow grid\n  d\tdouglas grid\n  s\tsudoku grid"
     try:
         opts, args = getopt.getopt(argv, "hg:m:")
     except getopt.GetoptError:
@@ -548,17 +583,17 @@ def main(argv):
     g = None
     m = 1
     for opt, arg in opts:
-        if opt == '-h':
+        if opt == "-h":
             print(help_message)
             sys.exit()
-        elif opt == '-g':
+        elif opt == "-g":
             if arg == "r":
                 g = RainbowGrid
-            elif arg == 'd':
+            elif arg == "d":
                 g = DouglasGrid
-            elif arg == 's':
+            elif arg == "s":
                 g = SudokuGrid
-        elif opt == '-m':
+        elif opt == "-m":
             m = arg
 
     if g is None:
@@ -568,5 +603,5 @@ def main(argv):
     g(grid_size=grid_size)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv[1:])

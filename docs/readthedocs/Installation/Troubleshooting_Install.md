@@ -15,13 +15,13 @@ Please raise an issue if you find Legion still doesn't work on Windows 10 after 
 ## Dragonfly
 
 - If commands work in some applications but not others that are supported by Caster, verify that the program is not running as administrator with elevated privileges. Dragonfly grammars cannot interact with programs that have administrator/elevated privileges. To fix:
-    
+
     - Run the .bat file as administrator. **Note** this means the entirety of Caster and Dragonfly will run as administrator which poses a significant security risk in general. Use this method with caution.
     - [Proof of Concept](https://github.com/dictation-toolbox/dragonfly/issues/11) work around but the project needs an active developer with C#. This allows Caster and Dragonfly to only elevate specific functionality that is necessary such as Key/Text actions and application context details.
     - Advanced [Workaround](https://groups.google.com/g/dragonflyspeech/c/2VrJKBI2mSo/m/R4zl6u2mBwAJ) - Editing natlink.exe with hex editor and re-signing with self signed certificate - **Use at your own risk!** Instructions note disadvantages.
 
 - Fix `TypeError: command must be a non-empty string, not ['C:\\Python27\\Scripts\\pip.exe', 'search', 'castervoice']`
-    
+
     - Update Dragonfly `python -m pip install dragonfly2 --upgrade` in command prompt
 
 - To fix `ImportError: No module named win32con`
