@@ -64,12 +64,14 @@ class GitBashRule(MappingRule):
         "(git|get) blame": R(Text("git blame PATH -L FIRSTLINE,LASTLINE")),
         "(git|get) gooey blame": R(Text("git gui blame PATH")),
         "(git|get) rebase": R(Text("git rebase ")),
+        "(git|get) diff": R(Text("git diff ")),
         "search recursive": R(Text('grep -rinH "PATTERN" *')),
         "search recursive count": R(Text('grep -rinH "PATTERN" * | wc -l')),
         "search recursive file type": R(
             Text('find . -name "*.java" -exec grep -rinH "PATTERN" {} \\;')
         ),
         "to file": R(Text(" > FILENAME")),
+        "sue do": R(Text("sudo")),
     }
     extras = [
         ShortIntegerRef("n", 1, 10000),
@@ -89,6 +91,7 @@ _executables = [
     "pycharm",
     "\\Code.exe",
     "\\git-bash.exe",
+    "\\MobaXterm_Personal_20.6.exe"
 ]
 
 

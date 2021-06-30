@@ -49,6 +49,8 @@ class VSCodeNonCcrRule(MappingRule):
         "output panel": R(Key("cs-u")),
         "markdown preview": R(Key("cs-v")),
         "markdown preview side": R(Key("c-k, v")),
+        "docker bar": R(Key("cs-a, cs-a")),
+        "containers": R(Key("cs-a, cs-c")),
         "Zen mode":
         # note: use esc esc to exit
         R(Key("c-k, z")),
@@ -126,8 +128,8 @@ class VSCodeNonCcrRule(MappingRule):
             Key("c-k, right"),
             rdescript="VS Code: Shift Current Group of Tabs to the Right E.g. Swap with Pane to the Right",
         ),
-        "<nth> tab": R(Key("a-%(nth)s")),
-        "<nth> editor": R(Key("c-%(nth)s")),
+        "<nth> tab": R(Key("c-%(nth)s")),
+        "<nth> editor": R(Key("a-%(nth)s")),
         # Languages Editing
         "go to definition": R(Key("f12")),
         "go to required definition": R(Key("c-f12:2, c-right:5, left/50, f12")),
@@ -159,10 +161,10 @@ class VSCodeNonCcrRule(MappingRule):
         "toggle tab moves focus": R(Key("c-m")),
         # Integrated Terminal
         "new terminal": R(Key("cs-backtick")),
-        "terminal scroll up": R(Key("c-up")),
-        "terminal scroll down": R(Key("c-down")),
-        "terminal page up": R(Key("s-pgup")),
-        "terminal page down": R(Key("s-pgdown")),
+        "termites up": R(Key("c-up")),
+        "termites down": R(Key("c-down")),
+        "termites puppy": R(Key("s-pgup")),
+        "termites pound": R(Key("s-pgdown")),
         "altar kick": R(Key("alt:down") + Mouse("left") + Key("alt:up")),
         # Collapsing
         "(fold | collapse) region": R(Key("cs-lbracket")),
