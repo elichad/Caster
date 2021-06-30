@@ -24,9 +24,9 @@ class Punctuation(MergeRule):
             R(Text("%(long)s" + "\\" + "%(long)s"))*Repeat(extra="npunc"),
         "<double_text_punc> [<npunc>]":
             R(Text("%(double_text_punc)s") + Key("left"))*Repeat(extra="npunc"),
-        "tabby [<npunc>]":
+        "(tabby | sill) [<npunc>]":
             R(Key("tab"))*Repeat(extra="npunc"),
-        "(back | shin) tabby [<npunc>]":
+        "(back | shin) (tabby | sill) [<npunc>]":
             R(Key("s-tab"))*Repeat(extra="npunc"),
         "boom [<npunc>]":
             R(Text(", "))*Repeat(extra="npunc"),

@@ -20,7 +20,7 @@ control_spec = "(control | fly)"
 alt_spec = "alt"
 windows_spec = "windows"
 
-# Modifier key names 
+# Modifier key names
 modifier_map = {
         control_spec: "c",
         shift_spec: "s",
@@ -39,7 +39,7 @@ modifier_key_name = {
 
 def build_perm_dict(a_dict):
     """
-    Builds a dict all possible combinations of spec/key based on dict 
+    Builds a dict all possible combinations of spec/key based on dict
     Returns dict
     """
     choices = {
@@ -76,7 +76,7 @@ class ButtonDict():
         self.button_dictionary.update({"(F{}".format(i) + " | function {})".format(i): "f{}".format(i)
                                        for i in range(1, 13)})
         self.button_dictionary.update({
-            "(tab | tabby)": "tab",
+            "(tab | tabby | sill)": "tab",
             "(backspace | clear)": "backspace",
             "(delete | deli)": "del",
             "(enter | shock)": "enter",
