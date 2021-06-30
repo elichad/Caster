@@ -1,10 +1,11 @@
-from dragonfly import Mimic, Function, MappingRule, ShortIntegerRef
+from dragonfly import Mimic, Choice, Function, MappingRule, ShortIntegerRef
 
 from castervoice.lib.actions import Key, Text
 
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R
 
+from castervoice.lib.navigation import drop_keep_clipboard_for_git_bash
 
 def _apply(n):
     if n != 0:
@@ -41,6 +42,7 @@ class GitBashRule(MappingRule):
         "CD up": R(Text("cd ..")),
         "CD": R(Text("cd ")),
         "list": R(Text("ls")),
+        "print working directory": R(Text("pwd")),
         "make directory": R(Text("mkdir ")),
         "undo [last] commit | (git|get) reset soft head": R(
             Text("git reset --soft HEAD~1")
@@ -72,11 +74,45 @@ class GitBashRule(MappingRule):
         ),
         "to file": R(Text(" > FILENAME")),
         "sue do": R(Text("sudo")),
+        "spoil [<nnavi500>] [(<capitalization> <spacing> | <capitalization> | <spacing>) [(bow|bowel)]]": R(
+            Function(drop_keep_clipboard_for_git_bash), rspec="spoil"
+        ),
     }
     extras = [
         ShortIntegerRef("n", 1, 10000),
+        ShortIntegerRef("nnavi500", 1, 500),
+        Choice(
+            "capitalization",
+            {
+                "yell": 1,
+                "tie": 2,
+                "gerrish": 3,
+                "sing": 4,
+                "laws": 5,
+                "say": 6,
+                "cop": 7,
+                "slip": 8,
+            },
+        ),
+        Choice(
+            "spacing",
+            {
+                "gum": 1,
+                "gun": 1,
+                "spine": 2,
+                "snake": 3,
+                "pebble": 4,
+                "incline": 5,
+                "dissent": 6,
+                "descent": 6,
+            },
+        ),
     ]
-    defaults = {"n": 0}
+    defaults = {"n": 0,
+        "nnavi500": 1,
+        "capitalization": 0,
+        "spacing": 0,
+    }
 
 
 _executables = [

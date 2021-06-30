@@ -34,7 +34,7 @@ class Grid:
         if cls.MODE is None:
             return False
         elif cls.MODE == grid:
-            return True    
+            return True
 
     @classmethod
     def mouse_alternates(cls, mode, monitor=1, rough=True):
@@ -179,6 +179,34 @@ def drop_keep_clipboard(nnavi500, capitalization, spacing):
         Clipboard.set_system_text(text)
         time.sleep(settings.settings([u'miscellaneous', u'keypress_wait'])/1000.)
         Key("c-v").execute()
+        time.sleep(settings.settings([u'miscellaneous', u'keypress_wait'])/1000.)
+        # Restore the clipboard contents.
+        cb.copy_to_system()
+
+def drop_keep_clipboard_for_git_bash(nnavi500, capitalization, spacing):
+    # Maintain standard spark functionality for non-strings
+    if capitalization == 0 and spacing == 0 and nnavi500 == 1:
+        Key("cs-insert").execute()
+        return
+    # Get clipboard text
+    if nnavi500 > 1:
+        key = str(nnavi500)
+        if key in _CLIP:
+            text = _CLIP[key]
+        else:
+            get_current_engine().speak("slot empty")
+            text = None
+    else:
+        text = Clipboard.get_system_text()
+    # Format if necessary, and paste
+    if text is not None:
+        cb = Clipboard(from_system=True)
+        if capitalization != 0 or spacing != 0:
+            text = textformat.TextFormat.formatted_text(
+                capitalization, spacing, text)
+        Clipboard.set_system_text(text)
+        time.sleep(settings.settings([u'miscellaneous', u'keypress_wait'])/1000.)
+        Key("cs-insert").execute()
         time.sleep(settings.settings([u'miscellaneous', u'keypress_wait'])/1000.)
         # Restore the clipboard contents.
         cb.copy_to_system()
